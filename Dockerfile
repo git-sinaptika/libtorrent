@@ -25,6 +25,7 @@ RUN \
   --prefix=/usr \
   --enable-python-binding \
   --with-boost-system=boost_system \
+  --enable-debug=no \
   --disable-debug \
   --quiet && \
  make && \
