@@ -29,7 +29,8 @@ RUN \
   --quiet && \
  make && \
  make install-strip && \
- strip /usr/lib/libtorrent-rasterbar.a && \
+ strip /usr/lib/libtorrent-rasterbar.so && \
+ rm -rf /usr/lib/libtorrent-rasterbar.a && \
  cd && \
  rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
  apk del .build && \
@@ -48,8 +49,8 @@ LABEL \
  net.sinaptika.from="alpine:3.6" \
  c_software_name="libtorrent" \
  c_software_url="http://www.rasterbar.com/products/libtorrent/" \
- image.version="0.3" \
- date.version="12.7.2017" \
+ image.version="0.5" \
+ date.version="28.7.2017" \
  web_interface="false" \
  web_interface_port="false" \
  exposed_ports="false" \
