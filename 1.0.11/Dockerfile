@@ -30,7 +30,7 @@ RUN \
   --quiet && \
  make && \
  make install-strip && \
- #rm -rf /usr/lib/libtorrent-rasterbar.a && \
+ rm -rf /usr/lib/libtorrent-rasterbar.a && \
  strip /usr/lib/python2.7/site-packages/libtorrent.so && \
  strip /usr/lib/libtorrent-rasterbar.so && \
  rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
