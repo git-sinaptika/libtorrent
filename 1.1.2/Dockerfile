@@ -36,7 +36,7 @@ RUN \
  rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
  apk del .build_libtorrent && \
  apk add --no-cache --virtual .runtime_libtorrent \
-  boost-python boost-system libgcc libstdc++ python2 && \
+  boost-python boost-system libgcc libstdc++ python2
 
 LABEL \
  net.sinaptika.maintainer="info@sinaptika.net" \
