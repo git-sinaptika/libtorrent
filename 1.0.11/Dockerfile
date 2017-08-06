@@ -33,6 +33,7 @@ RUN \
  strip /usr/lib/libtorrent-rasterbar.a && \
  strip /usr/lib/python2.7/site-packages/libtorrent.so && \
  strip /usr/lib/libtorrent-rasterbar.so && \
+ cd && \
  rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
  apk del .build_libtorrent && \
  apk add --no-cache --virtual .runtime_libtorrent \
