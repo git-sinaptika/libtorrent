@@ -18,24 +18,24 @@ RUN \
  wget -qO-\
   https://github.com/arvidn/libtorrent/releases/download/libtorrent-${_LIBTORRENT_VERSION}/libtorrent-rasterbar-${LIBTORRENT_VERSION}.tar.gz | \
   tar xvz && \
-  cd libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
-  ./configure \
-    --build=$CBUILD \
-    --host=$CHOST \
-    --prefix=/usr \
-    --enable-python-binding \
-    --with-boost-system=boost_system \
-    --with-libiconv=yes \
-    --enable-debug=no \
-    --enable-silent-rules && \
- #Static, not needed for deluged
- #   --enable-static=no && \
-  make && \
-  make install-strip && \
-  strip /usr/lib/python2.7/site-packages/libtorrent.so && \
- #Static, not needed
-  strip /usr/lib/python2.7/site-packages/libtorrent.so && \
-  cd && \
+ cd libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
+ ./configure \
+   --build=$CBUILD \
+   --host=$CHOST \
+   --prefix=/usr \
+   --enable-python-binding \
+   --with-boost-system=boost_system \
+   --with-libiconv=yes \
+   --enable-debug=no \
+   --enable-silent-rules && \
+#Static, not needed for deluged
+#   --enable-static=no && \
+ make && \
+ make install-strip && \
+ strip /usr/lib/python2.7/site-packages/libtorrent.so && \
+#Static, not needed
+ strip /usr/lib/python2.7/site-packages/libtorrent.so && \ 
+ cd && \
  rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
  apk del .build_libtorrent && \
  apk add --no-cache --virtual .runtime_libtorrent \
