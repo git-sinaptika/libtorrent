@@ -12,34 +12,34 @@ WORKDIR \
 
 RUN \
 #Libtorrent
- apk add --no-cache --virtual .build_libtorrent \
-  wget ca-certificates alpine-sdk boost-dev libressl-dev python2-dev && \
- cd /root && \
- wget -qO-\
-  https://github.com/arvidn/libtorrent/releases/download/libtorrent-${_LIBTORRENT_VERSION}/libtorrent-rasterbar-${LIBTORRENT_VERSION}.tar.gz | \
-  tar xvz && \
-  cd libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
-  ./configure \
-    --build=$CBUILD \
-    --host=$CHOST \
-    --prefix=/usr \
-    --enable-python-binding \
-    --with-boost-system=boost_system \
-    --with-libiconv=yes \
-    --enable-debug=no \
-    --enable-silent-rules && \
- #Static, not needed for deluged
- #   --enable-static=no && \
-  make && \
-  make install-strip && \
-  strip /usr/lib/python2.7/site-packages/libtorrent.so && \
- #Static, not needed
-  strip /usr/lib/python2.7/site-packages/libtorrent.a && \
-  cd && \
- rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
- apk del .build_libtorrent && \
- apk add --no-cache --virtual .runtime_libtorrent \
-  boost-python boost-system libgcc libstdc++ python2
+apk add --no-cache --virtual .build_libtorrent \
+ wget ca-certificates alpine-sdk boost-dev libressl-dev python2-dev && \
+cd /root && \
+wget -qO-\
+ https://github.com/arvidn/libtorrent/releases/download/libtorrent-${_LIBTORRENT_VERSION}/libtorrent-rasterbar-${LIBTORRENT_VERSION}.tar.gz | \
+ tar xvz && \
+cd libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
+#If you need static, remove/change --enable-static=no .
+./configure \
+  --build=$CBUILD \
+  --host=$CHOST \
+  --prefix=/usr \
+  --enable-python-binding \
+  --enable-static=no \
+  --with-boost-system=boost_system \
+  --with-libiconv=yes \
+  --enable-debug=no \
+  --enable-silent-rules && \
+#If building locally, you can run make -j$(nproc),
+#but you might get issues with swap/out of memory
+make && \
+make install-strip && \
+strip /usr/lib/python2.7/site-packages/libtorrent.so && \
+cd && \
+rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
+apk del .build_libtorrent && \
+apk add --no-cache --virtual .runtime_libtorrent \
+ boost-python boost-system libgcc libstdc++ python2
 
 LABEL \
  net.sinaptika.maintainer="info@sinaptika.net" \
