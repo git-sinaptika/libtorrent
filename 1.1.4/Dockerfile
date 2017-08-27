@@ -34,7 +34,7 @@ RUN \
   make install-strip && \
   strip /usr/lib/python2.7/site-packages/libtorrent.so && \
  #Static, not needed
-  strip /usr/lib/python2.7/site-packages/libtorrent.so && \
+  strip /usr/lib/python2.7/site-packages/libtorrent.a && \
   cd && \
  rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
  apk del .build_libtorrent && \
@@ -48,8 +48,8 @@ LABEL \
  net.sinaptika.from="alpine:3.6" \
  c_software_name="libtorrent" \
  c_software_url="http://www.rasterbar.com/products/libtorrent/" \
- image.version="0.4" \
- date.version="5.8.2017" \
+ image.version="0.5" \
+ date.version="26.8.2017" \
  web_interface="false" \
  web_interface_port="false" \
  exposed_ports="false" \
