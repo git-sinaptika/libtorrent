@@ -1,7 +1,7 @@
 #Maintainer info@sinaptika.net
 #libtorrent http://www.rasterbar.com/products/libtorrent/
 #libtorrent image
-FROM alpine:3.6
+FROM alpine:3.7
 
 ENV \
     LIBTORRENT_VERSION="1.0.11" \
@@ -45,12 +45,12 @@ LABEL \
     net.sinaptika.maintainer="info@sinaptika.net" \
     net.sinaptika.name="libtorrent" \
     net.sinaptika.branch="master" \
-    net.sinaptika.from="alpine:3.6" \
+    net.sinaptika.from="alpine:3.7" \
     c_software_name="libtorrent" \
     c_software_url="http://www.rasterbar.com/products/libtorrent/" \
-    image.version="0.6" \
-    date.version="18.10.2017" \
+    image.version="0.8" \
+    date.version="29.12.2017" \
     web_interface="false" \
     web_interface_port="false" \
     exposed_ports="false" \
-    docker_volumes="false"
+docker_volumes="false"
