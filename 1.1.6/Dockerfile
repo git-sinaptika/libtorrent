@@ -4,8 +4,8 @@
 FROM alpine:3.7
 
 ENV \
-  LIBTORRENT_VERSION="1.0.11" \
-  _LIBTORRENT_VERSION="1_0_11"
+  LIBTORRENT_VERSION="1.1.6" \
+  _LIBTORRENT_VERSION="1_1_6"
 
 WORKDIR \
   /opt
@@ -21,7 +21,7 @@ RUN \
     https://github.com/arvidn/libtorrent/releases/download/libtorrent-${_LIBTORRENT_VERSION}/libtorrent-rasterbar-${LIBTORRENT_VERSION}.tar.gz | \
     tar xvz && \
   cd libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
-  /opt/libtorrent-rasterbar-${LIBTORRENT_VERSION}/configure \
+  ./configure \
     --build=$CBUILD \
     --host=$CHOST \
     --prefix=/usr \
@@ -34,10 +34,12 @@ RUN \
   make && \
   make install-strip && \
   strip /usr/lib/python2.7/site-packages/libtorrent.so && \
+  cd /opt && \
   rm -rf libtorrent-rasterbar-${LIBTORRENT_VERSION} && \
   apk del .build_libtorrent && \
   apk add --no-cache --virtual .runtime_libtorrent \
-    boost-python boost-system libgcc libstdc++ python2
+    boost-python boost-system libgcc libstdc++ python2 && \
+  ldconfig
 
 LABEL \
   net.sinaptika.maintainer="info@sinaptika.net" \
@@ -47,7 +49,7 @@ LABEL \
   c_software_name="libtorrent" \
   c_software_url="http://www.rasterbar.com/products/libtorrent/" \
   image.version="0.9" \
-  date.version="20.1.2018" \
+  date.version="15.2.2018" \
   web_interface="false" \
   web_interface_port="false" \
   exposed_ports="false" \
