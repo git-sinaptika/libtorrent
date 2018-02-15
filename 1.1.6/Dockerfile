@@ -39,7 +39,7 @@ RUN \
   apk del .build_libtorrent && \
   apk add --no-cache --virtual .runtime_libtorrent \
     boost-python boost-system libgcc libstdc++ python2 && \
-  ldconfig
+  ldconfig /usr/lib
 
 LABEL \
   net.sinaptika.maintainer="info@sinaptika.net" \
